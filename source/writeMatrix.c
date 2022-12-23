@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     const int rowsB = atoi(argv[3]);
     const int colsB = atoi(argv[4]);
 
-    printf("Writing two matrices on file \"%s\"...\n", FILE_NAME);
+    printf("Writing two matrices on file \"%s\" matAlarge and matBlarge...\n", FILE_NAME);
     printf("Matrix A: %d rows %d columns\n", rowsA, colsA);
     printf("Matrix B: %d rows %d columns\n", rowsB, colsB);
 
