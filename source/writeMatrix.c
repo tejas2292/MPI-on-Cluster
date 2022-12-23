@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        writeRandMatrixOnFile(file, rowsA, colsA, MAX_RAND);
+        writeRandMatrixOnFile(fileA, rowsA, colsA, MAX_RAND);
         fprintf(fileA, "\n");
     }
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        writeRandMatrixOnFile(file, rowsB, colsB, MAX_RAND);
+        writeRandMatrixOnFile(fileB, rowsB, colsB, MAX_RAND);
         fprintf(fileB, "\n");
     }
 
