@@ -3,8 +3,8 @@
 #include <string.h>
 #include <time.h>
 
-#define NUM_ROWS 4
-#define NUM_COLS 4
+#define NUM_ROWS 2048
+#define NUM_COLS 2048
 
 int main(int argc, char *argv[])
 {
