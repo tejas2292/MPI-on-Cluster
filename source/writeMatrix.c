@@ -72,7 +72,6 @@ int main(int argc, char *argv[])
     {
         writeRandMatrixOnFile(file, rowsA, colsA, MAX_RAND);
         fprintf(fileA, "\n");
-        writeRandMatrixOnFile(file, rowsB, colsB, MAX_RAND);
     }
 
     fclose(fileA);
