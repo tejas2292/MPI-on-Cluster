@@ -1,96 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <limits.h>
 #include <time.h>
+#include "matrixOps.h"
 
-#define NUM_ROWS 2048
-#define NUM_COLS 2048
+#define FILE_IN_NAME "infile"
+#define FILE_OUT_NAME "outfile"
 #define MAX_RAND 5
 
 int main(int argc, char *argv[])
 {
+
     clock_t startTime, endTime;
     startTime = clock();
     srand((unsigned)time(NULL));
+    char pathname[50];
+    sprintf(pathname, "../test/%s", FILE_IN_NAME);
+    FILE *inFile = fopen(pathname, "r");
 
-    int offset, i, j;
-    int A[NUM_ROWS][NUM_COLS], B[NUM_ROWS][NUM_COLS], C[NUM_ROWS][NUM_COLS];
-    FILE *fp;
-    char *filename_A = "matAlarge.txt";
-    char *filename_B = "matBlarge.txt";
-    char *filename_C = "additionResult.txt";
-    char pathname[80];
-
-    /* read matrix A from file */
-
-    sprintf(pathname, "../test/%s", filename_A);
-    if ((fp = fopen(pathname, "r")) == NULL)
+    if (inFile == NULL)
     {
-        printf("Can't open file %s\n", filename_A);
-        exit(1);
-    }
-    else
-    {
-        for (i = 0; i < NUM_ROWS; i++)
-        {
-            for (j = 0; j < NUM_COLS; j++)
-            {
-                fscanf(fp, "%d", &A[i][j]);
-            }
-        }
-        fclose(fp);
+        printf("Error opening the file \"%s\"\n", FILE_IN_NAME);
+        exit(EXIT_FAILURE);
     }
 
-    /* read matrix B from file */
+    int rowsA, colsA, rowsB, colsB;
 
-    sprintf(pathname, "../test/%s", filename_B);
-    if ((fp = fopen(pathname, "r")) == NULL)
-    {
-        printf("Can't open file %s\n", filename_B);
-        exit(1);
-    }
-    else
-    {
-        for (i = 0; i < NUM_ROWS; i++)
-        {
-            for (j = 0; j < NUM_COLS; j++)
-            {
-                fscanf(fp, "%d", &B[i][j]);
-            }
-        }
-        fclose(fp);
-    }
+    fscanf(inFile, "%d %d %d %d", &rowsA, &colsA, &rowsB, &colsB);
+    int **matrixA = readMatrixFromFile(inFile, rowsA, colsA);
+    int **matrixB = readMatrixFromFile(inFile, rowsB, colsB);
+    fclose(inFile);
 
-    /* add matrix A and B */
-    for (i = 0; i < NUM_ROWS; i++)
-    {
-        for (j = 0; j < NUM_COLS; j++)
-        {
-            C[i][j] = A[i][j] + B[i][j];
-        }
-    }
+    int **prodMatrix = addMatrices(matrixA, matrixB, rowsA, colsA, rowsB, colsB);
 
-    sprintf(pathname, "../test/%s", filename_C);
-    if ((fp = fopen(pathname, "w")) == NULL)
-    {
-        printf("Can't open file %s\n", filename_C);
-        exit(1);
-    }
-    else
-    {
-        for (i = 0; i < NUM_ROWS; i++)
-        {
-            for (j = 0; j < NUM_COLS; j++)
-            {
-                fprintf(fp, "%d\t", C[i][j]);
-            }
-            fprintf(fp, "\n");
-        }
-        fclose(fp);
-    }
+    if (prodMatrix == NULL) /*Product was not appliable on that matrices*/
+        exit(EXIT_FAILURE);
+
+    sprintf(pathname, "../test/%s", FILE_OUT_NAME);
+    FILE *outFile = fopen(pathname, "w");
+    writeMatrixOnFile(outFile, prodMatrix, rowsA, colsB);
+    fclose(outFile);
+
+    free(prodMatrix);
+    free(matrixA);
+    free(matrixB);
 
     endTime = clock();
-    printf("The computation took %.2lf seconds\nOpen file \"additionResult\" in test folder to see the result matrix\n", (double)(endTime - startTime) / CLOCKS_PER_SEC);
+    printf("The computation took %.2lf seconds\nOpen file \"outfile\" in test folder to see the result matrix\n", (double)(endTime - startTime) / CLOCKS_PER_SEC);
     return 0;
 }
