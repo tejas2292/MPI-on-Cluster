@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include <time.h>
 
 #define NUM_ROWS 2048
 #define NUM_COLS 2048
+#define MAX_RAND 5
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +20,7 @@ int main(int argc, char *argv[])
     char *filename_A = "matAlarge.txt";
     char *filename_B = "matBlarge.txt";
     char *filename_C = "additionResult.txt";
-    char pathname[50];
+    char pathname[80];
 
     /* read matrix A from file */
 
