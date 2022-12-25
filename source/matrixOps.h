@@ -13,5 +13,6 @@ void printMatrix(int **matrix, int rows, int cols);
 int **multiplyMatrices(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB, int colsB);
 int *multiplyMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB, int colsB, int offset, int elements);
 int **addMatrices(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB, int colsB);
+int *addMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB, int colsB, int offset, int elements);
 
 #endif

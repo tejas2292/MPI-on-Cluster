@@ -60,35 +60,5 @@ int main(int argc, char *argv[])
     }
 
     fclose(file);
-
-    sprintf(pathname, "../test/%s", FILE_NAMEA);
-    FILE *fileA = fopen(pathname, "w");
-
-    if (fileA == NULL)
-    {
-        perror("Error opening the file");
-    }
-    else
-    {
-        writeRandMatrixOnFile(fileA, rowsA, colsA, MAX_RAND);
-        fprintf(fileA, "\n");
-    }
-
-    fclose(fileA);
-
-    sprintf(pathname, "../test/%s", FILE_NAMEB);
-    FILE *fileB = fopen(pathname, "w");
-
-    if (fileB == NULL)
-    {
-        perror("Error opening the file");
-    }
-    else
-    {
-        writeRandMatrixOnFile(fileB, rowsB, colsB, MAX_RAND);
-        fprintf(fileB, "\n");
-    }
-
-    fclose(fileB);
     return 0;
 }

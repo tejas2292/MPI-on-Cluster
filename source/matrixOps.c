@@ -154,7 +154,7 @@ int **addMatrices(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB,
 {
     if (colsA != rowsB)
     {
-        printf("Product not appliable on these matrixes, please be sure that matrixes are of the form A:mxn B:nxl\n");
+        printf("Addition not appliable on these matrixes, please be sure that matrixes are of the form A:mxn B:nxl\n");
         return NULL;
     }
     int **prod_matrix = allocateMatrix(rowsA, colsB);
@@ -167,6 +167,41 @@ int **addMatrices(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB,
 
             product = (matrixA[row_a][col_b] + matrixB[row_a][col_b]);
             prod_matrix[row_a][col_b] = product;
+        }
+    }
+    return prod_matrix;
+}
+
+int *addMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int rowsB, int colsB, int offset, int elements)
+{
+    if (colsA != rowsB)
+    {
+        printf("Addition not appliable on these matrixes, please be sure that matrixes are of the form A:mxn B:nxl\n");
+        return NULL;
+    }
+    int *prod_matrix = malloc(sizeof(int) * elements);
+    int product = 0;
+    int col_b;
+    int count = 0;
+
+    for (int row_a = 0; row_a < rowsA; row_a++)
+    {
+        if (row_a == 0)
+            col_b = offset;
+        else
+            col_b = 0;
+
+        for (int col_b = 0; col_b < colsB; col_b++)
+        {
+
+            product = (matrixA[row_a][col_b] + matrixB[row_a][col_b]);
+
+            prod_matrix[count++] = product;
+
+            if (count == elements)
+            {
+                return prod_matrix;
+            }
         }
     }
     return prod_matrix;
