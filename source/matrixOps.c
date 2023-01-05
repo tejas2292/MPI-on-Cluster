@@ -179,8 +179,8 @@ int *addMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int 
         printf("Addition not appliable on these matrixes, please be sure that matrixes are of the form A:mxn B:nxl\n");
         return NULL;
     }
-    int *prod_matrix = malloc(sizeof(int) * elements);
-    int product = 0;
+    int *sum_matrix = malloc(sizeof(int) * elements);
+    int sum = 0;
     int col_b;
     int count = 0;
 
@@ -194,15 +194,15 @@ int *addMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int 
         for (int col_b = 0; col_b < colsB; col_b++)
         {
 
-            product = (matrixA[row_a][col_b] + matrixB[row_a][col_b]);
+            sum = (matrixA[row_a][col_b] + matrixB[row_a][col_b]);
 
-            prod_matrix[count++] = product;
+            sum_matrix[count++] = sum;
 
             if (count == elements)
             {
-                return prod_matrix;
+                return sum_matrix;
             }
         }
     }
-    return prod_matrix;
+    return sum_matrix;
 }
