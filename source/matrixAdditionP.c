@@ -143,8 +143,8 @@ int main(int argc, char *argv[])
         }
     }
 
-for (int i = 0, j = 0, next; i < rowsB; i++)
-    { /*Reading selected rows from matrix A*/
+    for (int i = 0, j = 0, next; i < rowsB; i++)
+    { /*Reading selected rows from matrix B*/
         if (i == recvBuf[j] && j < rows)
         {
             for (int k = 0; k < colsB; k++)
@@ -158,7 +158,7 @@ for (int i = 0, j = 0, next; i < rowsB; i++)
         }
     }
     int *sendBuf = addMatricesretVect(partMatrixA, partMatrixB, rows, colsA, rowsB, colsB, offset, elements); /*Buffer used to store computed values to send to MASTER*/
-    int *recvGatBuf = malloc(sizeof(int) * elements * tasksNum);                                          /*Buffer used to gather all partial results from all workers*/
+    int *recvGatBuf = malloc(sizeof(int) * elements * tasksNum);                                              /*Buffer used to gather all partial results from all workers*/
     int recvCounts[tasksNum];
     int displs[tasksNum];
     displs[0] = 0;
