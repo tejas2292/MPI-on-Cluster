@@ -183,29 +183,21 @@ int *addMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int 
     int product = 0;
     int col_b;
     int count = 0;
-
-    for (int row_a = 0; row_a < rowsA; row_a++)
+	
+//    printf("rowsA : %d, colsA : %d, rowsB : %d, colsB : %d, offset : %d, elements : %d\n",
+//rowsA,colsA,rowsB,colsB,offset, elements);
+    for (int row_a = 0; row_a < colsA; row_a++)
     {
-        if (row_a == 0)
-            col_b = offset;
-        else
-            col_b = 0;
-
-        for (int col_a = 0; col_b < colsB; col_a++)
+        for (int col_b = 0; col_b < colsB; col_b++)
         {
-            product = (matrixA[row_a][col_a] + matrixB[row_a][col_a]);
-            prod_matrix[count++] = product;
-
-            if (((col_a + 1) == colsA))
-            {
-                col_a = -1;
-                col_b++;
-                product = 0;
-            }
-            if (count == elements)
-            {
-                return prod_matrix;
-            }
+	    
+            product = (matrixA[row_a][col_b] + matrixB[row_a][col_b]);
+	    prod_matrix[count++]=product;
+//	printf("i=%d, j=%d, matA[i][j]=%d, matB[i][j]=%d, result=%d\n",
+//	row_a,col_b, matrixA[row_a][col_b],matrixB[row_a][col_b],product);	
+	if(count == elements){
+		return prod_matrix;
+	}
         }
     }
     return prod_matrix;

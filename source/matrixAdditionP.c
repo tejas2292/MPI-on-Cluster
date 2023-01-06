@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 
     int offset = recvBuf[rows], elements = recvBuf[rows + 1];
     int **partMatrixA = allocateMatrix(rows, colsA);
-    int **matrixB = allocateMatrix(rowsB, colsB);
+    int **partMatrixB = allocateMatrix(rows, colsB);
 
     for (int i = 0, j = 0, next; i < rowsA; i++)
     { /*Reading selected rows from matrix A*/
@@ -143,13 +143,21 @@ int main(int argc, char *argv[])
         }
     }
 
-    for (int i = 0; i < rowsB; i++)
-    { /*Reading matrix B from file*/
-        for (int j = 0; j < colsB; j++)
-            fscanf(inFile, " %d", &matrixB[i][j]);
+for (int i = 0, j = 0, next; i < rowsB; i++)
+    { /*Reading selected rows from matrix A*/
+        if (i == recvBuf[j] && j < rows)
+        {
+            for (int k = 0; k < colsB; k++)
+                fscanf(inFile, " %d", &partMatrixB[j][k]);
+            j++;
+        }
+        else
+        {
+            for (int k = 0; k < colsB; k++)
+                fscanf(inFile, " %d", &next);
+        }
     }
-
-    int *sendBuf = addMatricesretVect(partMatrixA, matrixB, rows, colsA, rowsB, colsB, offset, elements); /*Buffer used to store computed values to send to MASTER*/
+    int *sendBuf = addMatricesretVect(partMatrixA, partMatrixB, rows, colsA, rowsB, colsB, offset, elements); /*Buffer used to store computed values to send to MASTER*/
     int *recvGatBuf = malloc(sizeof(int) * elements * tasksNum);                                          /*Buffer used to gather all partial results from all workers*/
     int recvCounts[tasksNum];
     int displs[tasksNum];
@@ -181,7 +189,7 @@ int main(int argc, char *argv[])
     free(recvBuf);
     free(recvGatBuf);
     free(sendBuf);
-    free(matrixB);
+    free(partMatrixB);
     free(partMatrixA);
 
     double endTime = MPI_Wtime();
