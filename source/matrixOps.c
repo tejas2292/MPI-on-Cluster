@@ -193,11 +193,11 @@ int *addMatricesretVect(int **matrixA, int **matrixB, int rowsA, int colsA, int 
 
         for (int col_a = 0; col_b < colsB; col_a++)
         {
-            product += (matrixA[row_a][col_a] + matrixB[col_a][col_b]);
+            product = (matrixA[row_a][col_a] + matrixB[row_a][col_a]);
+            prod_matrix[count++] = product;
 
             if (((col_a + 1) == colsA))
             {
-                prod_matrix[count++] = product;
                 col_a = -1;
                 col_b++;
                 product = 0;
