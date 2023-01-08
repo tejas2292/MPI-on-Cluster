@@ -1,0 +1,39 @@
+1) Input A:1028 x 1028, B:1028 x 1028 (Multiplication)
+seq: 7.19
+par 2: 4.11
+par 3: 2.93
+par 4: 2.29
+par 5: 1.99
+par 6: 1.69
+par 7: 1.66
+par 8: 1.41
+
+2) Input A:1028 x 1028, B:1028 x 1028 (Addition)
+seq: 0.29
+par 2: 0.35
+par 3: 0.35
+par 4: 0.37
+par 5: 0.39
+par 6: 0.39
+par 7: 0.41
+par 8: 0.41
+
+3) Input A:2048 x 2048, B:2048 x 2048 (Multiplication)
+seq: 132.37
+par 2: 81.33
+par 3: 49.83
+par 4: 38.90
+par 5: 30.84
+par 6: 26.05
+par 7: 22.39
+par 8: 19.68
+
+4) Input A:2048 x 2048, B:2048 x 2048 (Addition)
+seq: 1.15
+par 2: 1.29
+par 3: 1.37
+par 4: 1.31
+par 5: 1.44
+par 6: 1.35
+par 7: 1.46
+par 8: 1.45
