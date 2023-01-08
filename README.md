@@ -7,6 +7,14 @@ the number of columns of matrix A must be equal to the number of rows of matrix 
 not square. Files are used as input and output in the parallel solution that was built. The output product matrix is written in file "outfile" once the input has been read from file "infile." The algorithm uses the following work division
 technique when given p processing units and the input matrices A:m x n and B: n x l
 
+## Access Master SSH using PUTTY
+
+1. "ccassignment.ppk" file has been provided with the source code.
+2. Use Hostname : ubuntu@107.21.44.197
+3. Port : 22
+4. Select the ppk file in connection->auth->credentials
+5. Open the session.
+
 ## Project structure
 
 * source/
